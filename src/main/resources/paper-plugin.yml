@@ -1,0 +1,8 @@
+name: microservice
+version: '${version}'
+main: ch.lukyrouge.microservice.Microservice
+api-version: '1.20'
+prefix: [MS]
+load: STARTUP
+authors: [Lukyrouge]
+description: A microservice runtime for SpigotMC and PaperMC Minecraft-Servers.
