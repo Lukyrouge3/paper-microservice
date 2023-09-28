@@ -1,4 +1,4 @@
-name: microservice
+name: Microservice
 version: '${version}'
 main: ch.lukyrouge.microservice.Microservice
 api-version: '1.20'

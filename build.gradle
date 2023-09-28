@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'net.minecrell.plugin-yml.paper' version '0.6.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'ch.lukyrouge.deneria'
@@ -19,6 +21,7 @@ repositories {
 
 dependencies {
     compileOnly "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
 }
 
 def targetJavaVersion = 17
@@ -43,5 +46,28 @@ processResources {
     filteringCharset 'UTF-8'
     filesMatching('paper-plugin.yml') {
         expand props
+    }
+}
+paper {
+    name = 'Microservice'
+    version = '${version}'
+    main = 'ch.lukyrouge.microservice.Microservice'
+    apiVersion = '1.20'
+    prefix = '[MS]'
+    load = 'STARTUP'
+    author = 'Lukyrouge'
+    description = 'A microservice runtime for SpigotMC and PaperMC Minecraft-Servers.'
+}
+
+jar {
+    dependsOn("shadowJar")
+}
+
+shadowJar {
+    dependencies {
+        include('com.fasterxml.jackson.core:jackson-databind:2.12.7.1')
+    }
+    manifest {
+        attributes 'Main-Class': 'ch.lukyrouge.microservice.Microservice'
     }
 }
